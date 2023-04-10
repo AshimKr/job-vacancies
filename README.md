@@ -26,7 +26,7 @@ already created user details(you can check any details by using this credentials
 Endpoints
 The API has the following endpoints:
 
-POST /signup
+POST /signup :-
 To Create a user to the database
 request body: {
     "email": "johndoe@example.com",
@@ -34,7 +34,7 @@ request body: {
 }
 
 
-POST /login
+POST /login :-
 To login and generate jwt token
 request body: {
     "email": "johndoe@example.com",
@@ -44,10 +44,10 @@ request body: {
 
 <!-- all the below api is protected by jwt token -->
 
-GET /validate
+GET /validate :-
 To get the logged in user details
 
-POST /job
+POST /job :-
 To Create a job vacancy to the database
 request body: {
         JobTitle           
@@ -63,10 +63,10 @@ request body: {
 	}
 
 
-GET /job
+GET /job :-
 TO get all the job vacancies
 
-POST /jobbycountry
+POST /jobbycountry :-
 Get details of job vacancy using country name and SeniorityLevel
 request body: {
     Country        
@@ -74,7 +74,7 @@ request body: {
 }
 
 
-POST /jobbycountryorcity
+POST /jobbycountryorcity :-
 Get details of job vacancy using country name OR SeniorityLevel
 request body: {
     Country        
