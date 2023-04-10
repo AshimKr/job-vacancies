@@ -8,6 +8,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @route: http://localhost:3000/job
+// @Method: GET
 func GetAllJob(c *gin.Context) {
 	// Find jobs by Country
 
@@ -24,6 +26,9 @@ func GetAllJob(c *gin.Context) {
 	c.JSON(http.StatusOK, allJob)
 }
 
+// @route: http://localhost:3000/job
+// @Method: POST
+// @description: To create a single job in db
 func JobCreate(c *gin.Context) {
 	// Get data off req body
 	var body struct {
@@ -58,7 +63,9 @@ func JobCreate(c *gin.Context) {
 	})
 }
 
-// Trying to create bunch records
+// @route: http://localhost:3000/alljob
+// @Method: POST
+// @description: to create multiple at a time job in db
 func AllJobCreate(c *gin.Context) {
 	// Get data off req body
 	// var body struct {
@@ -89,23 +96,18 @@ func AllJobCreate(c *gin.Context) {
 	// Senior Java Developer	Senior	ES	Barcelona	644000	SVU	Java, JavaEE, jBoss, REST, Microservices, RabbitMQ, PostgresQL	1000-5000	Mining
 	// Middle PHP Developer	Middle	PT	Lisbon	425500	SVU	PHP, Falcon, Unit-testing, SOLID, SQL, MongoDB	10-50	Communication
 	// Junior PHP Developer	Junior	PT	Lisbon	322000	SVU	PHP, LAMP, SQL, bash, OOP, HTML, CSS	10-50	Communication
-	// Senior PHP Developer	Senior	PT	Lisbon	494500	SVU	PHP, Falcon, REST, SQL, MongoDB, Unit-testing, Behat, SOLID, Docker, AWS	10-50	Communication
-	// PHP Developer	Middle	NL	Amsterdam	782000	SVU	PHP, LAMP, MySQL, PHPUnit, OOP	10-50	Automotive
-	// Frontend Developer	Middle	NL	Amsterdam	747500	SVU	TypeScript, JavaScript, SASS, LESS, Karma	10-50	Health
-	// Node.js Developer	Middle	NL	Amsterdam	690000	SVU	Node.js, JavaScript, Git, Mongo, noSQL, NPM	10-50	Health
-	// PHP TeamLead	Tech management	NL	Amsterdam	920000	SVU	PHP, LAML, SCRUM, JIRA, Bamboo, MVC	10-50	Health
-	// Frontend TeamLead	Tech management	NL	Rotterdam	977500	SVU	TypeScript, JavaScript, SASS, JIRA, Bamboo	10-50	Real Estate
-	// Node.js TeamLead	Tech management	NL	Rotterdam	897000	SVU	Node.js, JavaScript, JIRA, Bamboo, webpack	10-50	Real Estate
-
-	// Senior Golang Developer	Senior	BE	Bruges	1035000	SVU	GoLang, Microservices, GoRPC, Bamboo, Docker	50-100	FinTech
 
 	// Create jobs
 	allJob := []*models.AllJob{
-		{JobTitle: "Fullstack TeamLead Tech management", SeniorityLevel: "Senior", SeniorityLevelRank: 3, Country: "IE", City: "Dublin", Salary: 897000, Currency: "SVU", RequiredSkills: "SVU	PHP, JavaScript, CSS/SASS, JIRA, SCRUM, AWS, SNS/SQS, Kinesis, NPM", CompanySize: "10-50", CompanyDomain: "Logistics"},
-		{JobTitle: "Middle Fullstack Developer", SeniorityLevel: "Middle", SeniorityLevelRank: 2, Country: "IE", City: "Dublin", Salary: 862500, Currency: "SVU", RequiredSkills: "PHP, JavaScript, CSS/SASS, SQL, AWS, Docker", CompanySize: "10-50", CompanyDomain: "Logistics"},
-		{JobTitle: "Senior Java Developer", SeniorityLevel: "Senior", SeniorityLevelRank: 3, Country: "BE", City: "Bruges", Salary: 977500, Currency: "SVU", RequiredSkills: "Java, J2SE, Spring, Microservices, Bamboo, Docker", CompanySize: "10-50", CompanyDomain: "FinTech"},
-		{JobTitle: "Middle Java Developer", SeniorityLevel: "Middle", SeniorityLevelRank: 3, Country: "BE", City: "Antwerp", Salary: 920000, Currency: "SVU", RequiredSkills: "Java, Spring, Microservices, Kinesis, Junit, SOAP/RPC, Hibernate", CompanySize: "50-100", CompanyDomain: "Automotive"},
-		{JobTitle: "Middle Golang Developer", SeniorityLevel: "Middle", SeniorityLevelRank: 3, Country: "BE", City: "Antwerp", Salary: 770500, Currency: "SVU", RequiredSkills: "GoLang, Microservices, GoRPC", CompanySize: "50-100", CompanyDomain: "Automotive"},
+		{JobTitle: "Senior Golang Developer", SeniorityLevel: "Senior", SeniorityLevelRank: 3, Country: "RE", City: "Bruges", Salary: 1035000, Currency: "SVU", RequiredSkills: "GoLang, Microservices, GoRPC, Bamboo, Docker", CompanySize: "50-100", CompanyDomain: "FinTech"},
+		{JobTitle: "Node.js TeamLead", SeniorityLevel: "Tech management", SeniorityLevelRank: 3, Country: "NL", City: "Rotterdam", Salary: 897000, Currency: "SVU", RequiredSkills: "Node.js, JavaScript, JIRA, Bamboo, webpack", CompanySize: "10-50", CompanyDomain: "Real Estate"},
+		{JobTitle: "Frontend TeamLead", SeniorityLevel: "Tech management", SeniorityLevelRank: 3, Country: "NL", City: "Rotterdam", Salary: 977500, Currency: "SVU", RequiredSkills: "TypeScript, JavaScript, SASS, JIRA, Bamboo", CompanySize: "10-50", CompanyDomain: "Real Estate"},
+		{JobTitle: "PHP TeamLead", SeniorityLevel: "Tech management", SeniorityLevelRank: 3, Country: "NL", City: "Amsterdam", Salary: 920000, Currency: "SVU", RequiredSkills: "PHP, LAML, SCRUM, JIRA, Bamboo, MVC", CompanySize: "10-50", CompanyDomain: "Health"},
+		{JobTitle: "Node.js Developer", SeniorityLevel: "Middle", SeniorityLevelRank: 3, Country: "NL", City: "Amsterdam", Salary: 690000, Currency: "SVU", RequiredSkills: "Node.js, JavaScript, Git, Mongo, noSQL, NPM", CompanySize: "10-50", CompanyDomain: "Health"},
+		{JobTitle: "Frontend Developer", SeniorityLevel: "Middle", SeniorityLevelRank: 3, Country: "NL", City: "Amsterdam", Salary: 747500, Currency: "SVU", RequiredSkills: "TypeScript, JavaScript, SASS, LESS, Karma", CompanySize: "10-50", CompanyDomain: "Health"},
+		{JobTitle: "PHP Developer", SeniorityLevel: "Middle", SeniorityLevelRank: 3, Country: "NL", City: "Amsterdam", Salary: 782000, Currency: "SVU", RequiredSkills: "PHP, LAMP, MySQL, PHPUnit, OOP", CompanySize: "10-50", CompanyDomain: "Automotive"},
+
+		{JobTitle: "Senior PHP Developer", SeniorityLevel: "Senior", SeniorityLevelRank: 3, Country: "PT", City: "Lisbon", Salary: 494500, Currency: "SVU", RequiredSkills: "PHP, Falcon, REST, SQL, MongoDB, Unit-testing, Behat, SOLID, Docker, AWS", CompanySize: "10-50", CompanyDomain: "Communication"},
 	}
 
 	result := initializers.DB.Create(&allJob)
@@ -122,8 +124,9 @@ func AllJobCreate(c *gin.Context) {
 	})
 }
 
-// @desc: Find job by country name OR city name
-// Protected route
+// @route: http://localhost:3000/jobbycountryorcity
+// @Method: POST
+// @description: To find a job by using country name or by city name
 func JobByCountryORCity(c *gin.Context) {
 	// Find jobs by Country
 	var body struct {
@@ -152,8 +155,9 @@ func JobByCountryORCity(c *gin.Context) {
 	c.JSON(http.StatusOK, allJob)
 }
 
-// @desc: Find job by country name and seniority level
-// Protected route
+// @route: http://localhost:3000/jobbycountry
+// @Method: POST
+// @description: To find a job by using country name and seniority level
 func JobByCountry(c *gin.Context) {
 	// Find jobs by Country
 	var body struct {
