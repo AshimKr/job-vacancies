@@ -17,6 +17,21 @@ func init() {
 func main() {
 	r := gin.Default()
 
+	// Enable CORS
+	r.Use(func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
+		c.Next()
+	})
+
+	// Define routes
+
+	r.GET("/", controllers.HomePage)
 	r.POST("/signup", controllers.Signup)
 	r.POST("/login", controllers.Login)
 	r.GET("/validate", middleware.RequireAuth, controllers.Validate)
